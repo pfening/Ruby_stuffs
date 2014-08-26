@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= language.lang_a %></strong>
+  <%= @word.word_a %>
+</p>
+
+<p>
+  <strong><%= language.lang_b %></strong>
+  <%= @word.word_b %>
+</p>
+
+<p>
+  <strong>Know:</strong>
+  <%= @word.know %>
+</p>
+
+<%= link_to 'Edit', edit_word_path(@word) %> |
+<%= link_to 'Back', words_path %>

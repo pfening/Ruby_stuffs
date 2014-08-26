@@ -1,0 +1,29 @@
+encrypted_data = "P4JhOdT7LO8Iupcn7iHg2w=="
+puts encrypted_data
+
+salt = "gabor".bytes
+puts salt
+passkey = "770922"
+
+def encryptit
+cipher = OpenSSL::Cipher::Cipher.new("DES")
+cipher.encrypt
+cipher.pkcs5_keyivgen passkey, salt,iterations,digest
+encrypted_account_number =  cipher.update(account_number)
+encrypted_account_number << cipher.final
+Base64.encode64(encrypted_account_number )
+end
+
+def decrypt_account_number
+cipher = OpenSSL::Cipher::Cipher.new("DES")
+base_64_code = Base64.decode64(encrypted_data)
+cipher.decrypt
+cipher.pkcs5_keyivgen passkey, salt,iterations,digest
+
+decrypted_account_number = cipher.update base_64_code
+decrypted_account_number << cipher.final
+decrypted_account_number
+end
+
+puts decrypted_account_number
+

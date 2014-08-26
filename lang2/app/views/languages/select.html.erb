@@ -1,0 +1,21 @@
+<h1>Select language</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First language</th>
+      <th>Second language</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @languages.each do |language| %>
+      <tr>
+        <td><%= language.lang_a.titleize %></td>
+        <td><%= language.lang_b.titleize %></td>
+        <td><%= link_to 'Show', language, class: "btn btn-default btn-xs" %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

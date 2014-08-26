@@ -1,0 +1,27 @@
+<h1>Listing languages</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Lang a</th>
+      <th>Lang b</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @languages.each do |language| %>
+      <tr>
+        <td><%= language.lang_a %></td>
+        <td><%= language.lang_b %></td>
+        <td><%= link_to 'Show', language, class: "btn btn-default" %>
+        <%= link_to 'Edit', edit_language_path(language), class: "btn btn-default" %>
+        <%= link_to 'Destroy', language, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Language', new_language_path %>

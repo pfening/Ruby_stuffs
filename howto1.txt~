@@ -1,0 +1,89 @@
+rails new dictionary
+
+cd dictionary
+
+rails generate controller welcome
+
+rails generate scaffold word word_a:string word_b:string know:boolean user_id:integer
+rake db:migrate
+
+rails generate scaffold menu item:string path:string
+rake db:migrate
+
+gem 'bootstrap-sass'
+gem 'devise'
+
+Open up config/environments/development.rb and add this line:
+config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+bundle install
+rails g devise:install
+
+rails g devise user
+rake db:migrate
+
+rails generate migration AddDetailsToUsers name:string lang_a:string lang_b:string
+rake db:migrate
+
+rails generate devise:views
+
+
+to the ApplicationController:
+before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:account_update) << :name
+  end
+
+edit files in /home/gabor/Ruby/dict/app/views/devise/registrations
+
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, autofocus: true %></div>
+
+
+add under the create method in words_controller.rb
+@word.user_id = current_user.id
+and under before_action :set_word, only: [:show, :edit, :update, :destroy] 
+  before_action :authenticate_user!, only: [:owner, :unknown, :known, :new, :create, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
+
+add check user to the end
+
+    def check_user
+	if current_user != @word.user
+	redirect_to root_url, alert: "This is not yours"
+	end
+    end
+
+
+add the user name to index.html.erb
+<td><%= word.user.name %></td>
+
+<% if (user_signed_in?) && (current_user == word.user)) %>
+   <td><%= link_to 'Edit', edit_word_path(word) %></td>
+   <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
+
+<% if user_signed_in? %>
+<%= link_to 'New Word', new_word_path %>
+<% end %>
+
+
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language selector <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <% @languages.each do |language| %>
+              <li><%= link_to "#{language.lang_a.titleize} - #{language.lang_b.titleize}", language %></li>
+              <li class="divider"></li>
+            <% end %>            
+          </ul>
+        </li>
+        
+
+
+

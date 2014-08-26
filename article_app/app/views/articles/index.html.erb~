@@ -1,0 +1,12 @@
+<h1>index page</h1>
+<% if @articles.blank? %>
+<p>There are not any articles currently in the system.</p>
+<% else %>
+<% @articles.each do |article| %>
+<p>
+<%= link_to article.title, article %>
+</p>
+<% end %>
+<hr/>
+<% end %>
+<p><%= link_to "Add article", new_article_path %></p>

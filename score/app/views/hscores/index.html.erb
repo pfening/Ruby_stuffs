@@ -1,0 +1,29 @@
+<h1>Listing hscores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Score</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hscores.each do |hscore| %>
+      <tr>
+        <td><%= hscore.game %></td>
+        <td><%= hscore.score %></td>
+        <td><%= link_to 'Show', hscore %></td>
+        <td><%= link_to 'Edit', edit_hscore_path(hscore) %></td>
+        <td><%= link_to 'Destroy', hscore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hscore', new_hscore_path %>

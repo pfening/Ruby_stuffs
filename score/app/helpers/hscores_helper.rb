@@ -1,0 +1,2 @@
+module HscoresHelper
+end

@@ -1,0 +1,41 @@
+<%= form_for(@word) do |f| %>
+  <% if @word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h2>
+
+      <ul>
+      <% @word.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="form-inline" role="form">
+    <div class="form-group" >
+	<div class="input-group">
+      	<div class="input-group-addon"><%= f.label :word_a %></div>
+ 	<%= f.text_field :word_a, class: "form-control" %>
+    	</div>
+    </div>
+
+    <div class="form-group" >
+	<div class="input-group">
+      	<div class="input-group-addon"><%= f.label :word_b %></div>
+ 	<%= f.text_field :word_b, class: "form-control" %>
+    	</div>
+    </div>
+<br>
+    <div class="form-group" >
+	<div class="input-group">
+      	I <%= f.label :know %> it.
+	<p><%= f.check_box :know, class: "checkbox-control" %></p>
+	</div>
+    </div>
+
+    <%= f.hidden_field :language_id %>
+
+  <div class="actions">
+    <%= f.submit class: "btn btn-default" %>
+  </div>
+<% end %>
+</div>

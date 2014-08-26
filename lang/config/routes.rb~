@@ -1,0 +1,6 @@
+Lang::Application.routes.draw do
+  resources :languages
+
+  resources :words
+
+end

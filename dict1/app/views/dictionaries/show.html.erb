@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word en:</strong>
+  <%= @dictionary.word_en %>
+</p>
+
+<p>
+  <strong>Word other:</strong>
+  <%= @dictionary.word_other %>
+</p>
+
+<p>
+  <strong>Know:</strong>
+  <%= @dictionary.know %>
+</p>
+
+<p>
+  <strong>Dont know:</strong>
+  <%= @dictionary.dont_know %>
+</p>
+
+<p>
+  <strong>Not sure:</strong>
+  <%= @dictionary.not_sure %>
+</p>
+
+<%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
+<%= link_to 'Back', dictionaries_path %>

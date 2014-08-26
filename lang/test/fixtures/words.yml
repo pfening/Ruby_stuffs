@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word_a: MyString
+  word_b: MyString
+  know: false
+
+two:
+  word_a: MyString
+  word_b: MyString
+  know: false

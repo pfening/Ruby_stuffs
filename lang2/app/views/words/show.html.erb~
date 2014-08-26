@@ -1,0 +1,14 @@
+<table class="table table-striped">
+  <th>Language a</th> 
+  <th>Language b</th>
+  <th>Do you know it?</th>
+<tr>
+  <td><%= @word.word_a %></td>
+  <td><%= @word.word_b %></td>
+  <td><%= @word.know %></td>
+</tr>
+</table>
+
+
+<%= link_to 'Edit', edit_word_path(@word), class: "btn btn-default" %> |
+<%= link_to 'Back', words_path, class: "btn btn-default" %>

@@ -1,0 +1,10 @@
+require 'java'
+ 
+frame = javax.swing.JFrame.new
+frame.setSize 300, 200
+frame.getContentPane.add (javax.swing.JLabel.new('Hello, World!'))
+
+frame.setDefaultCloseOperation (javax.swing.JFrame::EXIT_ON_CLOSE)
+frame.setLocationRelativeTo nil
+frame.pack
+frame.set_visible true

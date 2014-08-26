@@ -1,0 +1,27 @@
+require 'rubygems'
+require 'net/ldap'
+
+ldap = Net::LDAP.new
+ldap.host = '9.57.182.78'
+ldap.port = 389
+filter = Net::LDAP::Filter.eq("cn", "Pfening")
+base = "ou=bluepages,o=ibm.com"
+
+if ldap.bind
+ puts "authentication succeeded"
+# GET THE DISPLAY NAME AND E-MAIL ADDRESS FOR A SINGLE USER
+search_param = "pfening*"
+result_attrs = ["dn"]
+ 
+# Build filter
+search_filter = Net::LDAP::Filter.eq("sn", search_param)
+ 
+# Execute search
+ldap.search(:filter => search_filter, :attributes => result_attrs, :return_result => false) { |item| 
+    puts "#{item.dn.first}"
+}
+else
+  puts "authentication failed"
+end
+
+p ldap.get_operation_result

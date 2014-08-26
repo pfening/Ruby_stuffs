@@ -1,0 +1,55 @@
+rails new myblog
+cd myblog
+
+to the gemfile:
+gem 'tiny_mce'
+gem 'carrierwave'
+gem 'mini_magick', '3.5.0'
+gem 'devise'
+gem 'bootstrap-sass'
+
+bundle install
+
+rails generate scaffold article title:string text:string image:string
+rake db:migrate
+
+rails g uploader Image
+
+Open app/views/ideas/_form.html.erb and change
+<%= f.text_field :picture %>
+
+to
+<%= f.file_field :picture %>
+
+Sometimes, you might get an TypeError: can’t cast ActionDispatch::Http::UploadedFile to string.
+
+If this happens, in file app/views/ideas/_form.html.erb change the line
+<%= form_for(@article) do |f| %>
+
+to
+<%= form_for @article, :html => {:multipart => true} do |f| %>
+
+In your browser, add new idea with a picture. When you upload a picture it doesn’t look nice because it only shows a path to the file, so let’s fix that.
+
+Open app/views/ideas/show.html.erb and change
+<%= @article.image %>
+
+to
+<%= image_tag(@article.image_url, :width => 600) if @article.image.present? %>
+
+rails generate scaffold comment user:string comment:string article_id:integer
+rake db:migrate
+
+Open up config/environments/development.rb and add this line:
+config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+rails g devise:install
+
+rails g devise user
+rake db:migrate
+
+rails generate migration AddNameToUsers name:string
+rake db:migrate
+
+rails generate devise:views
+

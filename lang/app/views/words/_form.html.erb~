@@ -1,0 +1,29 @@
+<%= form_for(@language_word) do |f| %>
+  <% if @language_word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@language_word.errors.count, "error") %> prohibited this word from being saved:</h2>
+
+      <ul>
+      <% @language_word.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :word_a %><br>
+    <%= f.text_field :word_a %>
+  </div>
+  <div class="field">
+    <%= f.label :word_b %><br>
+    <%= f.text_field :word_b %>
+  </div>
+  <div class="field">
+    <%= f.label :know %><br>
+    <%= f.check_box :know %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

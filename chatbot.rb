@@ -1,0 +1,51 @@
+require 'xmpp4r'
+require 'xmpp4r/client'
+require 'xmpp4r/roster'
+include Jabber
+ 
+class Bot
+ 
+  attr_reader :client
+
+  def initialize jabber_id
+    @jabber_id = 'brunner000@googlemail.com'
+    @jabber_password = 'Pfg770922'
+  end
+ 
+  def connect
+    jid = JID.new(@jabber_id)
+    @client = Client.new jid
+    @client.connect
+    @client.auth @jabber_password
+    @client.send(Presence.new.set_type(:available))
+    puts "Hurray...!!  Connected..!!"
+    on_message
+  end
+ 
+  private
+  def on_message
+    mainthread = Thread.current
+    @client.add_message_callback do |message|
+      unless message.body.nil? && message.type != :error
+        reply = case message.body
+          when /^time$/ then reply(message, "Current time is #{Time.now}")
+          when /^reverse\s.*$/ then reply(message, "Reversed: #{message.body.reverse}")
+          when /^help$/ then reply(message, "Available commands are: 'time', 'help', 'reverse'.")
+          else reply(message, "You said: #{message.body}")
+        end
+      end
+    end
+    Thread.stop
+    @client.close
+  end
+ 
+  def reply message, reply_content
+    reply_message = Message.new(message.from, reply_content)
+    reply_message.type = message.type
+    @client.send reply_message
+  end
+ 
+end
+ 
+@bot = Bot.new 'brunner000@googlemail.com'
+@bot.connect

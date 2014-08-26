@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word en:</strong>
+  <%= @word.word_en %>
+</p>
+
+<p>
+  <strong>Word other:</strong>
+  <%= @word.word_other %>
+</p>
+
+<p>
+  <strong>Know:</strong>
+  <%= @word.know %>
+</p>
+
+<p>
+  <strong>Dont know:</strong>
+  <%= @word.dont_know %>
+</p>
+
+<p>
+  <strong>Not sure:</strong>
+  <%= @word.not_sure %>
+</p>
+
+<% if current_user == @word.user %>
+  <%= link_to 'Edit', edit_word_path(@word) %> |
+<% end %>
+<%= link_to 'Back', words_path %>

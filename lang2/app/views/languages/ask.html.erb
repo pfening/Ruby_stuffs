@@ -1,0 +1,14 @@
+<table class="table table-striped">
+  <th><%= @language.lang_a.titleize %></th> 
+  <th><%= @language.lang_b.titleize %></th>
+
+<% @words.each do |word| %>
+<tr>
+  <td><%= word.word_a %></td>
+  <td><%= word.word_b %></td>
+
+</tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', languages_path, class: "btn btn-default" %>

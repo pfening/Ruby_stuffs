@@ -1,0 +1,9 @@
+toolbar:
+  - styleselect | bold italic | undo redo | forecolor backcolor | table | preview | link |
+plugins:
+  - table
+  - textcolor
+  - code
+  - media
+  - preview
+  - link

@@ -1,0 +1,15 @@
+--- 
+cursor_positions: 
+  - :path: app/models/article.rb
+    :cursor_offset: 139
+    :timestamp: 2014-06-06 11:48:38 +02:00
+  - :path: app/models/comment.rb
+    :cursor_offset: 0
+    :timestamp: 2014-06-06 11:44:59 +02:00
+  - :path: Rakefile
+    :cursor_offset: 0
+    :timestamp: 2014-06-06 09:10:07 +02:00
+  - :path: Gemfile
+    :cursor_offset: 0
+    :timestamp: 2014-06-06 09:10:07 +02:00
+files_to_retain: 0
